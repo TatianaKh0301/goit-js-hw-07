@@ -12,6 +12,8 @@ const createGalaryCardMarkup = ({ preview, original, description }) => {
         ` 
     };
     
+const createGalaryCards = galleryItems.map(createGalaryCardMarkup).join(' ');
+gallaryList.insertAdjacentHTML('beforeend', createGalaryCards);
 
-console.log(createGalaryCardMarkup(galleryItems[0]));
+
 console.log(galleryItems);
