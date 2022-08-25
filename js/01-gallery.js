@@ -22,17 +22,13 @@ const createGalleryCards = galleryItems.map(createGalleryCardMarkup).join(' ');
 galleryList.insertAdjacentHTML('beforeend', createGalleryCards);
 
 function onGalleryItemclick(event) {
-    event.preventFefault();
-    if (!event.target.classList.contains('gallery__image"')) {
+    event.preventDefault();
+    // console.log("event.target", event.target);
+    // console.log("event.currentTarget", event.currentTarget);
+    if (!event.target.classList.contains('gallery__image')) {
         return; 
     } else {
-        console.log("event.target.dataset.source", event.target.dataset.source);
-
-        // const selectedImageUrl = event.target.dataset.source;
-        // const instance = basicLightbox.create(`
-        // <img src=${selectedImageUrl} width="1280" height="600">
-        // `);
-        // instance.show();        
+        console.log("event.target.dataset.source", event.target.dataset.source);       
     }
 }
 
