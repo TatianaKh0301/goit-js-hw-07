@@ -15,20 +15,25 @@ const createGalleryCardMarkup = ({ preview, original, description }) => {
                 <img class="gallery__image" src=${preview} data-source=${original} alt=${description}/>
             </a>
         </div>
-        ` 
-    };
-    
+        `
+};
+
 const createGalleryCards = galleryItems.map(createGalleryCardMarkup).join(' ');
 galleryList.insertAdjacentHTML('beforeend', createGalleryCards);
 
 function onGalleryItemclick(event) {
     event.preventDefault();
     // console.log("event.target", event.target);
-    // console.log("event.currentTarget", event.currentTarget);
+    console.log("event.currentTarget.clientWidth", event.currentTarget.clientWidth);
     if (!event.target.classList.contains('gallery__image')) {
-        return; 
+        return;
     } else {
-        console.log("event.target.dataset.source", event.target.dataset.source);       
+        const imageUrl = event.target.dataset.source;
+        console.log("imageUrl", imageUrl);
+        const instance = basicLightbox.create(`
+            <img src=${imageUrl} width ='1140' height = '600'>
+        `);
+        instance.show();
     }
 }
 
