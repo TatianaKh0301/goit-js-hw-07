@@ -31,22 +31,23 @@ function onGalleryItemclick(event) {
         const imageUrl = event.target.dataset.source;
         instance = basicLightbox.create(`
             <img src=${imageUrl} width = '800' height = '600'>
-        `);
-    
+        `,
+        { 
+            onShow: () => { 
+                window.addEventListener('keydown', onEscKeyPress);
+            },
+            onClose: () => {
+                window.removeEventListener('keydown', onEscKeyPress);
+            },
+        }
+        );
+
         instance.show();
-        
-        onShow: (instance) => { 
-            window.addEventListener('keydown', onEscKeyPress);
-        }
-    
-        onClose: (instance) => {
-            window.removeEventListener('keydown', onEscKeyPress);
-        }
     }
 }
 
 function onEscKeyPress(event) {
-    
+    console.log("event.key", event.key);
     if(event.key === 'Escape') {
         instance.close(); 
     } 
